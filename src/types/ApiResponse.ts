@@ -4,6 +4,6 @@ export interface ApiResponse
 {
     sucess:boolean;
     message:string;
-    isAceepitingMessages?:boolean;
+    isAceeptingMessage?:boolean;
     messages?:Array<Message>
 }
