@@ -71,7 +71,7 @@ import { Loader2 } from "lucide-react"
           title:'Sucess',
           description:response.data.message
         });
-        router.replace(`/verifiy-code/${username}`)
+        router.replace(`/verifiy/${username}`)
         setissubmitting(false)
       } catch (error) {
         console.error("Error in the sign up",error);

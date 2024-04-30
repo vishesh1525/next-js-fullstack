@@ -89,12 +89,13 @@ function page() {
       const response=await axios.post<ApiResponse>('/api/accept-messages',{
         acceptMessages:!acceptMessages
       })
-
+      console.log('hloo')
       setValue('acceptMessages',!acceptMessages)
       toast({
         title:response.data.message,
         variant:'default'
       })
+      console.log(acceptMessages)
     }catch(error)
     {
       const axiosError=error as AxiosError<ApiResponse>
@@ -106,9 +107,16 @@ function page() {
     }
   }
   const {username}=session?.user as User||[];
-  const baseurl=`${window.location.protocol}//${window.location.host}`
+  let baseurl = '';
+if (typeof window !== 'undefined') {
+  baseurl = `${window.location.protocol}//${window.location.host}`;
+}
+const profileUrl = `${baseurl}/u/${username}`;
 
-  const profileUrl=`${baseurl}/u/${username}`
+  
+  // const baseurl=`${window.location.protocol}//${window.location.host}`
+
+  // const profileUrl=`${baseurl}/u/${username}`
  
   const copytoClipboard=()=>{
     navigator.clipboard.writeText(profileUrl)
@@ -147,6 +155,7 @@ function page() {
           disabled={isswitchloading}
         />
         <span className="ml-2">
+          
           Accept Messages: {acceptMessages ? 'On' : 'Off'}
         </span>
       </div>
